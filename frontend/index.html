@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+    
+  <title>Witcher Merch — Fan Merchandise Store</title>
+  
+  <!-- Предварительное соединение с доменами Google Fonts для ускорения загрузки -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+  <!-- Подключение шрифтов Google Fonts:
+       - Cinzel Decorative: декоративный антиквенный шрифт для заголовков
+       - Cinzel: вариант Cinzel для основного текста
+       - Jost: современный гротеск для второстепенного текста
+       - Cormorant Garamond: элегантный шрифт с засечками
+       - Philosopher: философский шрифт для акцентов
+       display=swap: временно показывает системный шрифт, пока загружается пользовательский -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600;700&family=Jost:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet" />
+</head>
+
+<body>
+  <!-- Корневой контейнер для приложения -->
+  <div id="app"></div>
+  
+  <!-- Контейнер для всплывающих уведомлений (toast нотификаций) -->
+  <div id="toast-container" class="toast-container"></div>
+    
+  <!-- Шаблон карточки товара, клонируется при добавлении товаров на страницу -->
+  <template id="product-card-template">
+    <div class="card product-card reveal" data-slug="">
+      <!-- Блок с изображением товара -->
+      <div class="card-image">
+        <img class="p-img" src="" alt="" loading="lazy" />
+        <!-- Бэйджи для отображения статуса товара (скидка, новое) -->
+        <div class="card-badges">
+          <span class="badge badge-sale" style="display:none;">Sale</span>
+          <span class="badge badge-new" style="display:none;">Featured</span>
+        </div>
+        <!-- Кнопки действий над товаром -->
+        <div class="card-actions">
+          <!-- Кнопка добавления в корзину -->
+          <button class="btn-icon add-to-cart-btn" data-product-id="" title="Add to Cart">
+            <svg viewBox="0 0 24 24" fill="none" class="icon" style="width:24px;height:24px;">
+              <path
+                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+          <!-- Кнопка добавления в избранное (wishlist) -->
+          <button class="btn-icon wishlist-btn" data-product-id="" title="Wishlist">
+            <svg viewBox="0 0 24 24" fill="none" class="icon heart-icon" style="width:24px;height:24px;">
+              <path
+                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <!-- Ссылка и информация о товаре -->
+      <a href="" class="card-body p-link">
+        <div class="card-category p-category"></div>
+        <h3 class="card-title p-title"></h3>
+        <!-- Цена товара -->
+        <div class="card-price">
+          <span class="price p-price"></span>
+          <!-- Старая цена (отображается при наличии скидки) -->
+          <span class="price-old p-price-old" style="display:none;"></span>
+        </div>
+      </a>
+    </div>
+  </template>
+
+  <!-- Кнопка для прокрутки страницы вверх -->
+  <button id="scroll-up-btn" class="btn-icon scroll-up-btn" title="Наверх">
+    <svg viewBox="0 0 24 24" fill="none" style="width:24px;height:24px;">
+      <path d="M5 15l7-7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  </button>
+  
+  <!-- Подключение главного JavaScript модуля приложения -->
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>

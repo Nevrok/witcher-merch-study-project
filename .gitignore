@@ -1,0 +1,35 @@
+# ===== Секреты =====
+**/appsettings.json
+**/appsettings.*.json
+!**/appsettings.Development.json
+!**/appsettings.Example.json
+.env
+.env.local
+*.pfx
+*.key
+
+# ===== .NET / Backend =====
+bin/
+obj/
+*.user
+.vs/
+*.suo
+*.userosscache
+*.sln.docstates
+
+# ===== Node / Frontend =====
+node_modules/
+dist/
+.vite/
+npm-debug.log*
+
+# ===== OS / редакторы =====
+.DS_Store
+Thumbs.db
+~$*
+*.tmp
+.idea/
+.vscode/
+
+# ===== Прочее =====
+*.log

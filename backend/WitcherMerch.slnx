@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/WitcherMerch.API/WitcherMerch.API.csproj" />
+    <Project Path="src/WitcherMerch.Application/WitcherMerch.Application.csproj" />
+    <Project Path="src/WitcherMerch.Domain/WitcherMerch.Domain.csproj" />
+    <Project Path="src/WitcherMerch.Infrastructure/WitcherMerch.Infrastructure.csproj" />
+  </Folder>
+</Solution>

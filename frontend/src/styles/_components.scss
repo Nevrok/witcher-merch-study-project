@@ -1,0 +1,263 @@
+@use 'variables' as *;
+
+// ── ОСНОВНАЯ КНОПКА (базовые стили) ──
+.btn {
+  display: inline-flex; // Гибкий блок для центрирования
+  align-items: center; // Центрируем вертикально
+  justify-content: center; // Центрируем горизонтально
+  gap: 8px; // Промежуток между иконкой и текстом
+  padding: 12px 28px; // Внутренние отступы
+  font-size: 0.95rem; // Размер текста
+  font-weight: 600; // Полужирный текст
+  border-radius: $radius-md; // Скругленные углы
+  transition: all $transition-base; // Плавная анимация
+  letter-spacing: 0.5px; // Чуть увеличенное расстояние между буквами
+  text-transform: uppercase; // Все буквы в верхнем регистре
+  position: relative; // Для псевдоэлемента
+  overflow: hidden; // Скрываем переполнен элемент
+
+  // Блик при наведении
+  &::before {
+    content: ''; // Пустой контент
+    position: absolute; // Позиционируем абсолютно
+    inset: 0; // На весь размер кнопки
+    background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent); // Полуприозрачный градиент
+    opacity: 0; // Скрыта по умолчанию
+    transition: opacity $transition-fast; // Плавное появление
+  }
+  // При наведении показываем блик
+  &:hover::before { opacity: 1; }
+}
+
+// ── ОСНОВНАЯ КНОПКА (вариант) ──
+.btn-primary {
+  background: linear-gradient(135deg, $accent, darken($accent, 8%)); // Красный граденты
+  color: $text-white; // Белый текст
+  box-shadow: $shadow-glow; // Красное свечение
+  &:hover {
+    background: linear-gradient(135deg, $accent-hover, $accent); // Светлее при наведении
+    transform: translateY(-2px); // Слегка поднимаем кнопку
+    box-shadow: 0 0 40px $accent-glow; // Усиливаем свечение
+  }
+  &:active { transform: translateY(0); } // Вернули в исходное положение при нажатии
+}
+
+// ── КНОПКА С КОНТУРОМ ──
+.btn-outline {
+  background: transparent; // Прозрачный фон
+  color: $gold; // Золотой текст
+  border: 1px solid $border-color; // Тонкая граница
+  &:hover {
+    border-color: $accent; // Граница становится красной
+    color: $accent-hover; // Текст становится красным
+    box-shadow: 0 0 20px $accent-glow; // З красное свечение
+  }
+}
+
+// ── МИНИМАЛЬНАЯ КНОПКА ──
+.btn-ghost {
+  background: transparent; // Прозрачный фон
+  color: $text-muted; // Тусклый текст
+  padding: 8px 16px; // Меньше отступов
+  &:hover { color: $gold; } // Золотой текст при наведении
+}
+
+// ── КРУГЛАЯ КНОПКА С ИКОНКОЙ ──
+.btn-icon {
+  width: 44px; // Ширина кнопки
+  height: 44px; // Высота кнопки
+  padding: 0; // Нет внутренних отступов
+  border-radius: 50%; // Идеальный круг
+  display: inline-flex; // Гибкий блок
+  align-items: center; // Центрируем по вертикали
+  justify-content: center; // Центрируем по горизонтали
+  background: $bg-card; // Светлый фон
+  border: 1px solid $border-color; // Тонкая граница
+  color: $gold; // Золотая иконка
+  transition: all $transition-base; // Плавная анимация
+  &:hover {
+    border-color: $accent; // Границе становится красной
+    color: $accent-hover; // Иконка становится красной
+    box-shadow: $shadow-glow; // Красное свечение
+  }
+}
+
+// ── КАРТОЧКА ──
+.card {
+  background: $bg-card; // Светлый фон
+  border: 1px solid $border-color; // Тонкая граница
+  border-radius: $radius-lg; // Скругленные углы
+  overflow: hidden; // Скрываем переполнение
+  transition: all $transition-base; // Плавная анимация
+  // При наведении карточка поднимает и светится
+  &:hover {
+    border-color: $accent; // Красная граница
+    box-shadow: $shadow-glow; // Красное свечение
+    transform: translateY(-4px); // Поднимаем на 4px
+  }
+}
+
+// ── БЕЙДЖ (небольшой ярлык) ──
+.badge {
+  display: inline-flex; // Гибкий блок
+  align-items: center; // Центрируем
+  padding: 4px 12px; // Компактные отступы
+  border-radius: 20px; // Круглые углы
+  font-size: 0.75rem; // Маленький размер
+  font-weight: 600; // Полужирный
+  text-transform: uppercase; // Большие буквы
+  letter-spacing: 0.5px; // Увеличенные расстояния
+}
+// Бейдж "Скидка"
+.badge-sale {
+  background: $accent; // Красный фон
+  color: $text-white; // Белый текст
+}
+// Бейдж "Новое"
+.badge-new {
+  background: $gold; // Золотой фон
+  color: $bg-primary; // Темный текст
+}
+
+// ── СЕКЦИЯ (основной контейнер) ──
+.section {
+  padding: 80px 0; // Вертикальные отступы
+  position: relative; // Для позиционирования фона
+}
+
+// ── ЗАГОЛОВОК СЕКЦИИ ──
+.section-title {
+  font-size: 2.5rem; // Большой размер
+  text-align: center; // Центрируем
+  margin-bottom: 16px; // Отступ вниз
+  position: relative; // Для пс евдоэлемента
+  // Декоративная линия под заголовком
+  &::after {
+    content: ''; // Пустой контент
+    display: block; // Блочный элемент
+    width: 60px; // Ширина линии
+    height: 3px; // Толщина линии
+    background: linear-gradient(90deg, transparent, $accent, transparent); // Граденты с красным в центре
+    margin: 16px auto 0; // Отступ внизу
+  }
+}
+
+// ── ПОДЗАГОЛОВОК СЕКЦИИ ──
+.section-subtitle {
+  text-align: center; // Центрируем
+  color: $text-muted; // Тускдый цвет
+  font-size: 1.1rem; // Немного больше обычного
+  margin-bottom: 48px; // Большой отступ
+}
+
+// ── СЕТКА ТОВАРОВ ──
+.product-grid {
+  display: grid; // Сеточный макет
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); // Адаптивные колонки
+  gap: 24px; // Промежуток между товарами
+}
+
+// ── ЦЕНА ТОВАРА ──
+.price {
+  font-family: $font-heading; // Элегантный шрифт
+  font-size: 1.25rem; // Больший размер
+  color: $gold; // Золотой цвет
+  font-weight: 700; // Жирный
+}
+// Старая цена (с зачеркиванием)
+.price-old {
+  text-decoration: line-through; // Зачеркивание
+  color: $text-muted; // Тусклый цвет
+  font-size: 0.9rem; // Меньше основной
+  margin-left: 8px; // Отступ слева
+}
+
+// ── ИНДИКАТОР ЗАГРУЗКИ (крутящаяся звёздочка) ──
+.spinner {
+  width: 40px; // Ширина
+  height: 40px; // Высота
+  border: 3px solid $border-color; // Серая граница
+  border-top-color: $accent; // Верхняя часть красная
+  border-radius: 50%; // Круг
+  animation: spin 0.8s linear infinite; // Крутится
+  margin: 40px auto; // Центрируем
+}
+@keyframes spin { to { transform: rotate(360deg); } } // Анимация полного оборота
+
+// ── ПУСТОЕ СОСТОЯНИЕ (когда нет товаров) ──
+.empty-state {
+  text-align: center; // Центрируем все
+  padding: 60px 20px; // Большие отступы
+  color: $text-muted; // Тусклый цвет текста
+  h3 { margin-bottom: 12px; color: $text-heading; } // Заголовок светлее
+  p { margin-bottom: 24px; } // Отступ между абзацами
+}
+
+// ── РАЗДЕЛИТЕЛЬ ──
+.divider {
+  height: 1px; // Тонкая линия
+  background: linear-gradient(90deg, transparent, $border-color, transparent); // Граденты от прозрачно в центр
+  margin: 40px 0; // Отступы сверху и снизу
+}
+
+// ── КОНТЕЙНЕР УВЕДОМЛЕНИЙ (Toast) ──
+.toast-container {
+  position: fixed; // Фиксируем на месте
+  top: 24px; // Отступ сверху
+  right: 24px; // Отступ справа
+  z-index: 10000; // Выше всех элементов
+  display: flex; // Гибкий блок
+  flex-direction: column; // Вертикальное расположение
+  gap: 8px; // Промежуток между уведомлениями
+}
+// Само уведомление
+.toast {
+  background: $bg-card; // Светлый фон
+  border: 1px solid $border-color; // Граница
+  border-radius: $radius-md; // Скругленные углы
+  padding: 14px 20px; // Отступы
+  color: $text-primary; // Основной цвет текста
+  font-size: 0.9rem; // Немного меньше
+  box-shadow: $shadow-card; // Тень
+  animation: slideInRight 0.3s ease; // Скольжение справа
+  display: flex; // Гибкий блок
+  align-items: center; // Центрируем по вертикали
+  gap: 10px; // Промежуток между иконкой и текстом
+  min-width: 280px; // Минимальная ширина
+  // Успешное уведомление
+  &.toast-success { border-color: $success; }
+  // Ошибка
+  &.toast-error { border-color: $danger; }
+}
+@keyframes slideInRight {
+  from { transform: translateX(100%); opacity: 0; } // Начало за экраном
+  to { transform: translateX(0); opacity: 1; } // Конец на месте
+}
+
+// ── УПРАВЛЕНИЕ КОЛИЧЕСТВОМ (+ и -) ──
+.qty-control {
+  display: inline-flex; // Гибкий блок
+  align-items: center; // Центрируем по вертикали
+  border: 1px solid $border-color; // Граница
+  border-radius: $radius-md; // Скругленные углы
+  overflow: hidden; // Скрываем переполнение
+  button {
+    width: 36px; // Ширина кнопки
+    height: 36px; // Высота кнопки
+    display: flex; // Гибкий блок
+    align-items: center; // Центрируем
+    justify-content: center; // Центрируем
+    background: $bg-card; // Светлый фон
+    color: $gold; // Золотая иконка
+    font-size: 1.1rem; // Больший размер
+    transition: all $transition-fast; // Плавная анимация
+    // При наведении кнопка светится
+    &:hover { background: $accent; color: $text-white; }
+  }
+  span {
+    width: 44px; // Ширина поля с числом
+    text-align: center; // Центрируем текст
+    font-weight: 600; // Полужирный
+    color: $text-heading; // Светлый цвет
+  }
+}

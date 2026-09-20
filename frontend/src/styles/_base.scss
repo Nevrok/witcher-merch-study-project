@@ -1,0 +1,153 @@
+@use 'variables' as *;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+// ── ТЕЛЯЗАНИЕ HTML НА УРОВНЕ СТРАНИЦЫ ──
+html {
+  font-size: 16px; // Основной размер при раскрытии (rem будет равняться 16px)
+  scroll-behavior: smooth; // Плавная прокрутка акордов и якорей
+  -webkit-font-smoothing: antialiased; // Оптимизация шрифта для Safari
+  -moz-osx-font-smoothing: grayscale; // Оптимизация шрифта для Firefox на macOS
+}
+
+// ── ПЕРЕНОСА ШРИФТОВ (установка кстом свойств) ──
+:root {
+  --font-logo: 'Cinzel Decorative', serif; // Логотип (английский)
+  --font-heading: 'Cinzel', serif; // Заголовки (английские)
+}
+
+// Переопределение для русского языка
+html[lang="ru"] {
+  --font-logo: 'Cormorant Garamond', serif; // Логотип (русский)
+  --font-heading: 'Philosopher', sans-serif; // Заголовки (русские)
+}
+
+// ── ТЕЛЕЖАНИЕ НОВОЙ СТРАНИЦЫ ──
+body {
+  font-family: $font-body; // Основной дружелюбный шрифт
+  background: $bg-primary; // Очень темный фон
+  color: $text-primary; // Основной цвет текста
+  line-height: 1.6; // Промежуток между строками для удобства чтения
+  min-height: 100vh; // Не менее высоты экрана
+  overflow-x: hidden; // Отключаем горизонтальную прокрутку
+}
+
+// ── ЗАГОЛОВКИ ──
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-heading; // Элегантные шрифты
+  color: $text-heading; // Светлые заголовки
+  line-height: 1.2; // От такой помене строки не растягиваются
+  font-weight: 700; // Жирные заголовки
+}
+
+// ── ССЫЛКИ ──
+a {
+  color: $gold; // Золотые ссылки
+  text-decoration: none; // Без подчеркивания
+  transition: color $transition-fast; // Плавные цвет при анимации
+
+  // При наведении ссылка светлее
+  &:hover {
+    color: $accent-hover;
+  }
+}
+
+img {
+  max-width: 100%; // Изображения никогда не выходят за границы
+  height: auto; // Автоматическая высота (сохраняет пропорции)
+  display: block; // Убираем нижний отступ (inline-block проблема)
+}
+
+// ── КНОПКИ ──
+button {
+  font-family: $font-body; // Наследуем шрифт
+  cursor: pointer; // Курсор мыши как на ссылке
+  border: none; // Убираем стандартную границу
+  outline: none; // Убираем фокусный контур браузера
+  background: none; // Прозрачный фон
+  color: inherit; // Наследуем цвет текста
+}
+
+// ── ФОРМЕННЫЕ ИНПУТЫ (текстовые поля) ──
+input,
+textarea,
+select {
+  font-family: $font-body; // Шрифт данных
+  background: $bg-card; // Светлый фон для контраста
+  color: $text-primary; // Золотой текст
+  border: 1px solid $border-color; // Тонкая граница
+  border-radius: $radius-md; // Немного скругленные углы
+  padding: 12px 16px; // Внутренний отступ
+  font-size: 0.95rem; // Немного меньше основного размера
+  transition: border-color $transition-fast; // Плавное изменение границы
+
+  // При фокусе поле подсвечивается
+  &:focus {
+    border-color: $accent; // Граница становится красной
+    outline: none; // Убираем стандартный контур
+    box-shadow: 0 0 0 2px $accent-glow; // Добавляем красное свечение
+  }
+}
+
+// ── ВЫДЕЛЕНИЕ ТЕКСТА ──
+::selection {
+  background: $accent; // Красный фон при выделении
+  color: $text-white; // Белый текст для контраста
+}
+
+// ── ПОЛОСА ПРОКРУТКИ (WebKit браузеры) ──
+::-webkit-scrollbar {
+  width: 8px; // Ширина полосы прокрутки
+}
+
+// ── ФОНЫ ПОЛОСЫ ПРОКРУТКИ ──
+::-webkit-scrollbar-track {
+  background: $bg-primary; // Фон очень темный
+}
+
+// ── ПОЛЗУНОК ПОЛОСЫ ПРОКРУТКИ ──
+::-webkit-scrollbar-thumb {
+  background: $accent; // Красный ползунок
+  border-radius: 4px; // Скругленные углы
+
+  // При наведении ползунок светлеет
+  &:hover {
+    background: $accent-hover;
+  }
+}
+
+// ── ГЛАВНЫЙ КОНТЕЙНЕР ──
+.container {
+  width: 100%; // На всю ширину
+  max-width: 1280px; // Но не более 1280px
+  margin: 0 auto; // Центрируем
+  padding: 0 24px; // Боковые отступы
+}
+
+// ── ДОСТУПНОСТЬ: ТОЛЬКО ДЛЯ СКРИНРИДЕРОВ ──
+.sr-only {
+  position: absolute; // Убираем из потока
+  width: 1px; // Минимум
+  height: 1px; // Минимум
+  padding: 0; // Нет внутренних отступов
+  margin: -1px; // Отрицательный маржин
+  overflow: hidden; // Скрываем
+  clip: rect(0, 0, 0, 0); // Старый способ скрытия
+  border: 0; // Нет границы
+}
+
+// ── ГЛАВНОЕ ПРИЛОЖЕНИЕ ──
+#app {
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1); // Плавное появление/исчезновение
+}
